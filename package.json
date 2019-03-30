@@ -13,9 +13,12 @@
     "react-native-gesture-handler": "^1.1.0",
     "react-navigation": "^3.5.1",
     "react-redux": "5.1.1",
-    "redux": "4.0.1"
+    "redux": "4.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-devtools-extension": "^2.13.8"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "24.5.0",
     "enzyme": "^3.9.0",
@@ -29,9 +32,16 @@
     "react-dom": "^16.8.4",
     "react-test-renderer": "16.8.3",
     "redux-devtools": "^3.5.0",
-    "redux-devtools-extension": "^2.13.8",
-    "redux-logger": "^3.0.6",
-    "redux-mock-store": "^1.5.3"
+    "redux-mock-store": "^1.5.3",
+    "eslint": "^5.15.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^22.3.2",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.11.0",
+    "eslint-plugin-react-native": "^3.6.0"
   },
   "jest": {
     "preset": "react-native",
