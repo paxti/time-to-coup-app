@@ -24,6 +24,7 @@
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
     "metro-react-native-babel-preset": "0.53.1",
+    "prettier": "1.16.4",
     "react-dom": "^16.8.4",
     "react-test-renderer": "16.8.3",
     "redux-devtools": "^3.5.0",
