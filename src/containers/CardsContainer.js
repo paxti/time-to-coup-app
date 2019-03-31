@@ -18,15 +18,15 @@ class CardsPresentation extends React.Component {
     const cards = getCards();
 
     return (
-        <FlatList
-          style={{
-            flex: 1,
-            backgroundColor: 'white'
-          }}
-          data={cards}
-          keyExtractor={(item, _index) => item.name}
-          renderItem={({ item }) => <Card name={item.name} source={item.source} />}
-        />
+      <FlatList
+        style={{
+          flex: 1,
+          backgroundColor: 'white'
+        }}
+        data={cards}
+        keyExtractor={(item, _index) => item.name}
+        renderItem={({ item }) => <Card name={item.name} source={item.source} />}
+      />
     );
   }
 }

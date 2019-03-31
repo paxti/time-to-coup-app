@@ -18,15 +18,15 @@ class SessionPresentation extends React.Component {
     const cards = getCards();
 
     return (
-        <View style={{
-            flex: 1,
-            backgroundColor: 'white',
-            justifyContent: 'center',
-            alignItems: 'center'
-        }}>
-            <Text>Host session</Text>
-            <Text>Join session</Text>
-        </View>
+      <View style={{
+        flex: 1,
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}>
+        <Text>Host session</Text>
+        <Text>Join session</Text>
+      </View>
     );
   }
 }

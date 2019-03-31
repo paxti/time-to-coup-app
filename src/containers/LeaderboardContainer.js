@@ -18,14 +18,14 @@ class LeaderboardPresentation extends React.Component {
     const cards = getCards();
 
     return (
-        <View style={{
-            flex: 1,
-            backgroundColor: 'white',
-            justifyContent: 'center',
-            alignItems: 'center'
-        }}>
-            <Text>Current Coup Rank</Text>
-        </View>
+      <View style={{
+        flex: 1,
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}>
+        <Text>Current Coup Rank</Text>
+      </View>
     );
   }
 }
