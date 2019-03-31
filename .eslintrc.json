@@ -8,7 +8,8 @@
   "extends": ["airbnb-base", "prettier", "prettier/react", "plugin:react/recommended"],
   "plugins": ["prettier", "react", "react-native", "jest"],
   "rules": {
-    "prettier/prettier": ["error"]
+    "prettier/prettier": ["error"],
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
   },
   "parser": "babel-eslint",
   "parserOptions": {
