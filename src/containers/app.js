@@ -1,9 +1,9 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-import MainContainer from './MainContainer';
+import CardsContainer from './CardsContainer';
 
 const App = createStackNavigator({
   Home: {
-    screen: MainContainer
+    screen: CardsContainer
   }
 });
 

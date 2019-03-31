@@ -7,7 +7,7 @@ import Card from '../components/Card';
 
 import { getCards } from '../../data/helper';
 
-class MainContainer extends React.Component {
+class CardsPresentation extends React.Component {
   componentDidMount() {
     this.props.doSomething();
   }
@@ -18,13 +18,11 @@ class MainContainer extends React.Component {
     const cards = getCards();
 
     return (
-      <View>
         <FlatList
           data={cards}
           keyExtractor={(item, _index) => item.name}
           renderItem={({ item }) => <Card name={item.name} source={item.source} />}
         />
-      </View>
     );
   }
 }
@@ -46,7 +44,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-MainContainer.propTypes = {
+CardsPresentation.propTypes = {
   test: PropTypes.string,
   data: PropTypes.arrayOf(PropTypes.object),
   doSomething: PropTypes.func
@@ -55,4 +53,4 @@ MainContainer.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(MainContainer);
+)(CardsPresentation);
