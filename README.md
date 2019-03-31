@@ -1,6 +1,6 @@
 <p align="center"><img src="https://storage.googleapis.com/time-to-coup-api/twitter_header_photo_2.png" alt="header image"></p>
 
-[![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
+[![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cfd1299c70da42249d9137a77add2478)](https://www.codacy.com/app/paxti/time-to-coup-app?utm_source=github.com&utm_medium=referral&utm_content=paxti/time-to-coup-app&utm_campaign=Badge_Grade)
 
 # Time to Coup App
 
@@ -23,7 +23,7 @@ Notible rules
 
 # Install & Run
 
-You can use `npm` or `yarn`, but i would suggest `yarn` :wink. To run app use `react-native run-android` and `react-native run-ios`
+You can use `npm` or `yarn`, but i would suggest `yarn` :wink:. To run app use `react-native run-android` and `react-native run-ios`
 
 # Assets
 
