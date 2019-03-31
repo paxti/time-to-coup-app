@@ -1,15 +1,23 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 
-const Card = ({ imgSource }) => (
-  <View>
-    <Image source={imgSource} />
+import { getImage } from '../../data/helper';
+
+const Card = ({ name, source }) => (
+  <View style={{ width: '100%' }}>
+    <Image
+      style={{ width: '100%', height: Dimensions.get('window').width * 0.72 }}
+      resizeMode="contain"
+      accessibilityLabel={name}
+      source={getImage(source)}
+    />
   </View>
 );
 
 Card.propTypes = {
-  imgSource: PropTypes.string
+  name: PropTypes.string.isRequired,
+  source: PropTypes.string.isRequired
 };
 
 export default Card;

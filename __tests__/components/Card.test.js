@@ -1,14 +1,18 @@
 import React from 'react';
 import { Image } from 'react-native';
 import { shallow } from 'enzyme';
+import * as helper from '../../data/helper';
 
 import Card from '../../src/components/Card';
 
 describe('Card Component', () => {
   let testObject;
+  let getImageMock;
 
   beforeEach(() => {
-    testObject = shallow(<Card />);
+    getImageMock = jest.fn();
+    helper.getImage = getImageMock;
+    testObject = shallow(<Card name="" source="" />);
   });
 
   it('should be a component', () => {
@@ -19,9 +23,9 @@ describe('Card Component', () => {
     expect(testObject.find(Image).length).toEqual(1);
   });
 
-  it('should use image source from props', () => {
-    const imgSource = { url: 'some_image' };
-    testObject.setProps({ imgSource });
-    expect(testObject.find(Image).props().source).toEqual(imgSource);
+  it('should use source from props to load image', () => {
+    const item = { name: 'someName', source: 'someSource' };
+    testObject.setProps({ name: item.name, source: item.source });
+    expect(getImageMock).toHaveBeenCalledWith(item.source);
   });
 });
