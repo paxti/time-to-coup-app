@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { View, FlatList, Text } from 'react-native';
 import { connect } from 'react-redux';
 import * as types from '../constants/ActionTypes';
+import Card from '../components/Card';
 
 class MainContainer extends React.Component {
   componentDidMount() {
@@ -15,7 +16,7 @@ class MainContainer extends React.Component {
     return (
       <View>
         <Text>{test}</Text>
-        <FlatList data={data || defaultData} renderItem={({ item }) => <Text>{item.text}</Text>} />
+        <FlatList data={data || defaultData} renderItem={({ _item }) => <Card />} />
       </View>
     );
   }
