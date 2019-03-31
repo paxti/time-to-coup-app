@@ -38,8 +38,8 @@ describe('Main Container', () => {
         testObject
           .find(FlatList)
           .props()
-          .renderItem({ item: {} })
-      ).toEqual(<Card />);
+          .renderItem({ item: { name: '', source: '' } })
+      ).toEqual(<Card name="" source="" />);
     });
   });
 });

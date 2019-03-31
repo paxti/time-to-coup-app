@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, FlatList, Text } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import * as types from '../constants/ActionTypes';
 import Card from '../components/Card';
+
+import { getCards } from '../../data/helper';
 
 class MainContainer extends React.Component {
   componentDidMount() {
@@ -11,12 +13,17 @@ class MainContainer extends React.Component {
   }
 
   render() {
+    // eslint-disable-next-line no-unused-vars
     const { data, test } = this.props;
-    const defaultData = [{ text: 1 }, { text: 2 }];
+    const cards = getCards();
+
     return (
       <View>
-        <Text>{test}</Text>
-        <FlatList data={data || defaultData} renderItem={({ _item }) => <Card />} />
+        <FlatList
+          data={cards}
+          keyExtractor={(item, _index) => item.name}
+          renderItem={({ item }) => <Card name={item.name} source={item.source} />}
+        />
       </View>
     );
   }
