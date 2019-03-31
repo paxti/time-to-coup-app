@@ -1,8 +1,8 @@
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import CardsContainer from './CardsContainer';
 
-const App = createStackNavigator({
-  Home: {
+const App = createBottomTabNavigator({
+  Cards: {
     screen: CardsContainer
   }
 });
