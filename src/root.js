@@ -1,6 +1,6 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * Time to Coup
+ * https://github.com/paxti/time-to-coup-app
  *
  * @format
  * @flow
@@ -11,7 +11,9 @@ import { Provider } from 'react-redux';
 import configureStore from './store/configure-store';
 import App from './containers/app';
 
-const store = configureStore();
+const store = configureStore({
+  sessionActive: false
+});
 
 const Root = () => (
   <Provider store={store}>

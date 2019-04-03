@@ -1,14 +1,18 @@
 import * as types from '../constants/ActionTypes';
 
 const initialState = {
-  test: ''
+  sessionActive: false
 };
 
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
-    case types.DO_SOMETHING:
+    case types.START_SESSION:
       return Object.assign({}, state, {
-        test: 'did something'
+        sessionActive: true
+      });
+    case types.END_SESSION:
+      return Object.assign({}, state, {
+        sessionActive: false
       });
     default:
       return state;

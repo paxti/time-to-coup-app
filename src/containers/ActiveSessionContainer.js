@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import * as types from '../constants/ActionTypes';
 
-const SessionPresentation = ({ startSession }) => {
+const ActiveSessionPresentation = ({ endSession }) => {
   return (
     <View style={{
       flex: 1,
@@ -12,29 +12,29 @@ const SessionPresentation = ({ startSession }) => {
       justifyContent: 'center',
       alignItems: 'center'
     }}>
-      <TouchableOpacity onPress={startSession}>
-        <Text>Host session</Text>
-      </TouchableOpacity>
-      <Text>Join session</Text>
+      <Text>Active session</Text>
+      <TouchableOpacity onPress={endSession}>
+        <Text>End session</Text>
+        </TouchableOpacity>
     </View>
   );
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    startSession: () => {
+    endSession: () => {
       dispatch({
-        type: types.START_SESSION
+        type: types.END_SESSION
       });
     }
   };
 };
 
-SessionPresentation.propTypes = {
-  startSession: PropTypes.func.isRequired
+ActiveSessionPresentation.propTypes = {
+  endSession: PropTypes.func.isRequired
 };
 
 export default connect(
   null,
   mapDispatchToProps
-)(SessionPresentation);
+)(ActiveSessionPresentation);
