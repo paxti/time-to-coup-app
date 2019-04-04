@@ -19,10 +19,10 @@ const recentSessions = [
   }
 ];
 
-const recentSession = ({ session }) => {
+const RecentSession = ({ session }) => {
   const { id, name } = session;
   return (
-    <View 
+    <View
       key={id}
       style={{
         flexDirection: 'row'
@@ -36,21 +36,23 @@ const recentSession = ({ session }) => {
 
 const SessionPresentation = ({ startSession }) => {
   return (
-    <View style={{
-      flex: 1,
-      backgroundColor: 'white',
-      justifyContent: 'center',
-      alignItems: 'center'
-    }}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}
+    >
       <TouchableOpacity onPress={startSession}>
         <Text>Host session</Text>
       </TouchableOpacity>
       <Text>Join session</Text>
       <Text>Recent sessions</Text>
-      {recentSessions.map(session => recentSession({ session }))}
+      {recentSessions.map(session => RecentSession({ session }))}
     </View>
   );
-}
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -60,6 +62,13 @@ const mapDispatchToProps = dispatch => {
       });
     }
   };
+};
+
+RecentSession.propTypes = {
+  session: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired
+  })
 };
 
 SessionPresentation.propTypes = {

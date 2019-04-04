@@ -6,19 +6,21 @@ import * as types from '../constants/ActionTypes';
 
 const ActiveSessionPresentation = ({ endSession }) => {
   return (
-    <View style={{
-      flex: 1,
-      backgroundColor: 'white',
-      justifyContent: 'center',
-      alignItems: 'center'
-    }}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}
+    >
       <Text>Active session</Text>
       <TouchableOpacity onPress={endSession}>
         <Text>End session</Text>
-        </TouchableOpacity>
+      </TouchableOpacity>
     </View>
   );
-}
+};
 
 const mapDispatchToProps = dispatch => {
   return {
