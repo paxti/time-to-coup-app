@@ -4,6 +4,36 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import * as types from '../constants/ActionTypes';
 
+const recentSessions = [
+  {
+    id: 1,
+    name: '4/1/19'
+  },
+  {
+    id: 2,
+    name: '4/2/19'
+  },
+  {
+    id: 3,
+    name: '4/3/19'
+  }
+];
+
+const recentSession = ({ session }) => {
+  const { id, name } = session;
+  return (
+    <View 
+      key={id}
+      style={{
+        flexDirection: 'row'
+      }}
+    >
+      <Text>{`id: ${id}`}</Text>
+      <Text>{`name: ${name}`}</Text>
+    </View>
+  );
+};
+
 const SessionPresentation = ({ startSession }) => {
   return (
     <View style={{
@@ -16,6 +46,8 @@ const SessionPresentation = ({ startSession }) => {
         <Text>Host session</Text>
       </TouchableOpacity>
       <Text>Join session</Text>
+      <Text>Recent sessions</Text>
+      {recentSessions.map(session => recentSession({ session }))}
     </View>
   );
 }
