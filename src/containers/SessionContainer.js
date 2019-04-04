@@ -2,37 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import { Query } from 'react-apollo';
+import { GET_SESSIONS } from '../graphql/queries';
 import * as types from '../constants/ActionTypes';
 
-const recentSessions = [
-  {
-    id: 1,
-    name: '4/1/19'
-  },
-  {
-    id: 2,
-    name: '4/2/19'
-  },
-  {
-    id: 3,
-    name: '4/3/19'
-  }
-];
-
 const RecentSession = ({ session }) => {
-  const { id, name } = session;
-  return (
-    <View
-      key={id}
-      style={{
-        flexDirection: 'row'
-      }}
-    >
-      <Text>{`id: ${id}`}</Text>
-      <Text>{`name: ${name}`}</Text>
-    </View>
-  );
+  const { name } = session;
+  return <Text key={name}>{`name: ${name}`}</Text>;
 };
+
+const RecentSessions = () => (
+  <Query query={GET_SESSIONS}>
+    {({ loading, error, data }) => {
+      if (loading) return <Text>Loading...</Text>;
+      if (error) return <Text>Error :(</Text>;
+      return data.sessions.map(session => RecentSession({ session }));
+    }}
+  </Query>
+);
 
 const SessionPresentation = ({ startSession }) => {
   return (
@@ -49,7 +36,7 @@ const SessionPresentation = ({ startSession }) => {
       </TouchableOpacity>
       <Text>Join session</Text>
       <Text>Recent sessions</Text>
-      {recentSessions.map(session => RecentSession({ session }))}
+      <RecentSessions />
     </View>
   );
 };
@@ -66,7 +53,6 @@ const mapDispatchToProps = dispatch => {
 
 RecentSession.propTypes = {
   session: PropTypes.shape({
-    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired
   })
 };
