@@ -1,23 +1,19 @@
 import React from 'react';
-import { View, FlatList } from 'react-native';
+import { SafeAreaView, FlatList } from 'react-native';
 import { shallow } from 'enzyme';
-import configureStore from 'redux-mock-store';
 
-import MainContainer from '../../src/containers/MainContainer';
+import CardsContainer from '../../src/containers/CardsContainer';
 import Card from '../../src/components/Card';
 
-describe('Main Container', () => {
-  let store;
+describe('Cards Container', () => {
   let testObject;
 
   beforeEach(() => {
-    const mockStore = configureStore([]);
-    store = mockStore({});
-    testObject = shallow(<MainContainer />, { context: { store } }).dive();
+    testObject = shallow(<CardsContainer />);
   });
 
-  it('should have a View', () => {
-    expect(testObject.find(View).length).toBe(1);
+  it('should have a SafeAreaView', () => {
+    expect(testObject.find(SafeAreaView).length).toBe(1);
   });
 
   it('should have Flat list', () => {
@@ -38,8 +34,8 @@ describe('Main Container', () => {
         testObject
           .find(FlatList)
           .props()
-          .renderItem({ item: { name: '', source: '' } })
-      ).toEqual(<Card name="" source="" />);
+          .renderItem({ item: { name: '', source: '', simpleAction: '' } })
+      ).toEqual(<Card card={{ name: '', source: '', simpleAction: '' }} />);
     });
   });
 });

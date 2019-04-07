@@ -8,11 +8,12 @@ import Card from '../../src/components/Card';
 describe('Card Component', () => {
   let testObject;
   let getImageMock;
+  const initialCardData = { name: '', source: '', simpleAction: '' };
 
   beforeEach(() => {
     getImageMock = jest.fn();
     helper.getImage = getImageMock;
-    testObject = shallow(<Card name="" source="" />);
+    testObject = shallow(<Card card={initialCardData} />);
   });
 
   it('should be a component', () => {
@@ -25,7 +26,7 @@ describe('Card Component', () => {
 
   it('should use source from props to load image', () => {
     const item = { name: 'someName', source: 'someSource' };
-    testObject.setProps({ name: item.name, source: item.source });
+    testObject.setProps({ card: { name: item.name, source: item.source, simpleAction: '' } });
     expect(getImageMock).toHaveBeenCalledWith(item.source);
   });
 });
