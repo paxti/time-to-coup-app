@@ -7,22 +7,16 @@
  */
 
 import React from 'react';
-import { Provider } from 'react-redux';
 import { ApolloProvider } from 'react-apollo';
 import ApolloClient from 'apollo-boost';
-import configureStore from './store/configure-store';
+import Config from 'react-native-config';
 import App from './containers/app';
 
-const client = new ApolloClient({ uri: 'https://time-to-coup.appspot.com/graphql' });
-const store = configureStore({
-  sessionActive: false
-});
+const client = new ApolloClient({ uri: Config.API_URL });
 
 const Root = () => (
   <ApolloProvider client={client}>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <App />
   </ApolloProvider>
 );
 

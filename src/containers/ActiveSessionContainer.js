@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { connect } from 'react-redux';
-import * as types from '../constants/ActionTypes';
 
-const ActiveSessionPresentation = ({ endSession }) => {
+const ActiveSession = ({ endSession = () => {} }) => {
   return (
     <View
       style={{
@@ -22,21 +20,8 @@ const ActiveSessionPresentation = ({ endSession }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    endSession: () => {
-      dispatch({
-        type: types.END_SESSION
-      });
-    }
-  };
-};
-
-ActiveSessionPresentation.propTypes = {
+ActiveSession.propTypes = {
   endSession: PropTypes.func.isRequired
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(ActiveSessionPresentation);
+export default ActiveSession;
