@@ -4,16 +4,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { graphql } from 'react-apollo';
 import { GET_SESSIONS } from '../graphql/queries';
 
-const RecentSession = ({ session }) => {
-  const { name } = session;
-  return <Text key={name}>{`name: ${name}`}</Text>;
-};
-
-const RecentSessions = ({ loading, error, sessions }) => {
-  if (loading) return <Text>Loading...</Text>;
-  if (error) return <Text>Error :(</Text>;
-  return sessions.map(session => RecentSession({ session }));
-};
+import RecentSessions from '../components/RecentSessions';
 
 const Session = ({ startSession, loading, error, sessions }) => {
   return (
@@ -35,18 +26,12 @@ const Session = ({ startSession, loading, error, sessions }) => {
   );
 };
 
-RecentSession.propTypes = {
-  session: PropTypes.shape({
-    name: PropTypes.string.isRequired
-  }),
-  loading: PropTypes.bool.isRequired,
-  error: PropTypes.object
-};
-
 Session.propTypes = {
-  sessions: PropTypes.shape({
-    name: PropTypes.string.isRequired
-  }),
+  sessions: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string
+    })
+  ),
   startSession: PropTypes.func,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.object
