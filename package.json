@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "apollo-boost": "^0.3.1",
+    "apollo-cache-inmemory": "^1.5.1",
     "apollo-client": "^2.5.1",
     "graphql": "^14.2.1",
     "graphql-tag": "^2.10.1",
@@ -41,7 +42,6 @@
     "metro-react-native-babel-preset": "0.53.1",
     "prettier": "1.16.4",
     "react-dom": "^16.8.4",
-    "react-test-renderer": "16.8.3",
     "redux-devtools": "^3.5.0",
     "redux-mock-store": "^1.5.3"
   },
