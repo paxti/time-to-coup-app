@@ -1,27 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { connect } from 'react-redux';
-import { Query } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 import { GET_SESSIONS } from '../graphql/queries';
-import * as types from '../constants/ActionTypes';
+import { START_ACTIVE_SESSION } from '../graphql/mutations';
 
-const RecentSession = ({ session }) => {
-  const { name } = session;
-  return <Text key={name}>{`name: ${name}`}</Text>;
-};
+import RecentSessions from '../components/RecentSessions';
 
-const RecentSessions = () => (
-  <Query query={GET_SESSIONS}>
-    {({ loading, error, data }) => {
-      if (loading) return <Text>Loading...</Text>;
-      if (error) return <Text>Error :(</Text>;
-      return data.sessions.map(session => RecentSession({ session }));
-    }}
-  </Query>
-);
-
-const SessionPresentation = ({ startSession }) => {
+const Session = ({ startActiveSession, loading, error, sessions }) => {
   return (
     <View
       style={{
@@ -31,37 +17,34 @@ const SessionPresentation = ({ startSession }) => {
         alignItems: 'center'
       }}
     >
-      <TouchableOpacity onPress={startSession}>
+      <TouchableOpacity onPress={startActiveSession}>
         <Text>Host session</Text>
       </TouchableOpacity>
       <Text>Join session</Text>
       <Text>Recent sessions</Text>
-      <RecentSessions />
+      <RecentSessions loading={loading} error={error} sessions={sessions} />
     </View>
   );
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    startSession: () => {
-      dispatch({
-        type: types.START_SESSION
-      });
-    }
-  };
+Session.propTypes = {
+  sessions: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string
+    })
+  ),
+  startActiveSession: PropTypes.func,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.object
 };
 
-RecentSession.propTypes = {
-  session: PropTypes.shape({
-    name: PropTypes.string.isRequired
+export default compose(
+  graphql(START_ACTIVE_SESSION, { name: 'startActiveSession' }),
+  graphql(GET_SESSIONS, {
+    props: ({ data: { loading, sessions, error } }) => ({
+      loading,
+      sessions,
+      error
+    })
   })
-};
-
-SessionPresentation.propTypes = {
-  startSession: PropTypes.func.isRequired
-};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(SessionPresentation);
+)(Session);

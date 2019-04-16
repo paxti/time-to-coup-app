@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { connect } from 'react-redux';
-import * as types from '../constants/ActionTypes';
+import { graphql } from 'react-apollo';
+import { END_ACTIVE_SESSION } from '../graphql/mutations';
 
-const ActiveSessionPresentation = ({ endSession }) => {
+const ActiveSession = ({ endActiveSession }) => {
   return (
     <View
       style={{
@@ -15,28 +15,15 @@ const ActiveSessionPresentation = ({ endSession }) => {
       }}
     >
       <Text>Active session</Text>
-      <TouchableOpacity onPress={endSession}>
+      <TouchableOpacity onPress={endActiveSession}>
         <Text>End session</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    endSession: () => {
-      dispatch({
-        type: types.END_SESSION
-      });
-    }
-  };
+ActiveSession.propTypes = {
+  endActiveSession: PropTypes.func.isRequired
 };
 
-ActiveSessionPresentation.propTypes = {
-  endSession: PropTypes.func.isRequired
-};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(ActiveSessionPresentation);
+export default graphql(END_ACTIVE_SESSION, { name: 'endActiveSession' })(ActiveSession);

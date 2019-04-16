@@ -1,42 +1,20 @@
 import React from 'react';
-import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import CardsContainer from './CardsContainer';
-import SessionContainer from './SessionContainer';
-import LeaderboardContainer from './LeaderboardContainer';
+import { graphql } from 'react-apollo';
 import ActiveSessionContainer from './ActiveSessionContainer';
+import InactiveSessionContainer from './InactiveSessionContainer';
+import { IS_SESSION_ACTIVE } from '../graphql/queries';
 
-const InactiveSessionContainer = createAppContainer(
-  createBottomTabNavigator({
-    Cards: {
-      screen: CardsContainer
-    },
-    Session: {
-      screen: SessionContainer
-    },
-    Leaderboard: {
-      screen: LeaderboardContainer
-    }
-  })
-);
-
-const AppPresentation = ({ sessionActive }) => {
+const App = ({ sessionActive }) => {
   return sessionActive ? <ActiveSessionContainer /> : <InactiveSessionContainer />;
 };
 
-AppPresentation.propTypes = {
-  sessionActive: PropTypes.bool.isRequired
+App.propTypes = {
+  sessionActive: PropTypes.bool
 };
 
-const mapStateToProps = state => {
-  const { sessionActive } = state;
-  return {
+export default graphql(IS_SESSION_ACTIVE, {
+  props: ({ data: { sessionActive } }) => ({
     sessionActive
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  null
-)(AppPresentation);
+  })
+})(App);
